@@ -44,4 +44,16 @@ describe "Events API" do
     expect(event.title).to_not eq(previous_title)
     expect(event.title).to eq("React Meetup")
   end
+
+  it "can destroy an event" do
+  event = create(:event)
+
+  expect(Event.count).to eq(1)
+
+  delete "/api/v1/events/#{event.id}"
+
+  expect(response).to be_successful
+  expect(Event.count).to eq(0)
+  expect{Event.find(event.id)}.to raise_error(ActiveRecord::RecordNotFound)
+end
 end  
