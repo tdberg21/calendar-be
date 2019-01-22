@@ -20,6 +20,22 @@ class Api::V1::TasksController < ApplicationController
     render json: (task)
   end
 
+  def update
+    task_to_update = Task.where(event_id: params[:event_id], id: params[:id])
+    task_to_update.update(task_params)
+
+    render json: (task_to_update)
+  end
+
+  def destroy
+    event = Event.find(params[:event_id])
+    task = event.tasks.find_by!(id: params[:id])
+
+    task.destroy
+
+    render json: { status: 'SUCCESS', message: 'DELETED TASK' }
+  end
+
 
   private
 
