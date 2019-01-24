@@ -9,11 +9,12 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def create
+    puts event_params
     event = Event.new(event_params)
     if event.save
       render json: {status: 'SUCCESS', data: event}, status: :ok
     else
-      render json: {status: 'ERROR', data: event.errors}, status: :unprocessable_entity         
+      render json: {status: 'ERROR', data: event.errors}, status: :unprocessable_entity  
     end
   end
 
