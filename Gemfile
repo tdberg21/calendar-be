@@ -9,7 +9,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails_12factor'
-
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
 
 group :development, :test do
   gem 'faker'
